@@ -1,0 +1,486 @@
+/* =============================================
+       TOKENS
+    ============================================= */
+    :root {
+      --bg:        #1a1a1f;
+      --surface:   #22222a;
+      --surface2:  #2a2a35;
+      --border:    #2e2e3a;
+      --purple:    #8b5cf6;
+      --purple-dim:#6d42d4;
+      --purple-glow: rgba(139, 92, 246, 0.18);
+      --text:      #f0f0f5;
+      --muted:     #8888a0;
+      --font: 'Montserrat', sans-serif;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 64px;
+      background: rgba(26, 26, 31, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 5vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Ambient glow behind title */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 20%; left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+    }
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, #fff 40%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.4rem;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    /* Positioning statement (reemplaza el bloque de stats) */
+    .positioning {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      border-left: 3px solid var(--purple);
+      padding-left: 1rem;
+      max-width: 480px;
+      margin-bottom: 2.8rem;
+    }
+
+    /* Skills tags */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+    .skill-tag.highlight {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-glow);
+    }
+
+    /* =============================================
+       SECTION GENERIC
+    ============================================= */
+    section {
+      padding: 90px 5vw;
+      border-top: 1px solid var(--border);
+    }
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    /* =============================================
+       VIDEO GRID
+    ============================================= */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .video-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: block;
+    }
+    .video-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+    }
+
+    /* Contenedor del reproductor embebido (YouTube o Instagram) */
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: var(--surface2);
+      position: relative;
+      overflow: hidden;
+    }
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    /* El embed de Instagram trae su propio ancho/alto fijo por su script;
+       esto lo centra dentro de la tarjeta lo mejor posible. */
+    .video-embed.ig-embed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+    }
+    .video-embed.ig-embed iframe.instagram-media {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .video-info {
+      padding: 1rem 1.1rem;
+    }
+    .video-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .video-meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--purple);
+      letter-spacing: 0.06em;
+    }
+    .video-views {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+    .video-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--purple);
+    }
+    .video-link:hover { text-decoration: underline; }
+
+    /* =============================================
+       DEMO SECTION (iframes)
+    ============================================= */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .demo-card iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+    .demo-card-label {
+      padding: 0.9rem 1.1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .demo-card-label span {
+      color: var(--purple);
+      margin-right: 0.5rem;
+    }
+
+    /* =============================================
+       ABOUT / CV
+    ============================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .about-bio {
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .about-bio strong { color: var(--text); font-weight: 700; }
+
+    .cv-block { margin-bottom: 2.5rem; }
+    .cv-block-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item { margin-bottom: 1.4rem; }
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .exp-where {
+      font-size: 0.78rem;
+      color: var(--purple);
+      font-weight: 600;
+      margin: 0.15rem 0;
+    }
+    .exp-date {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-bullets li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+      line-height: 1.5;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    #contacto {
+      text-align: center;
+    }
+    .contact-headline {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .contact-btn:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-glow);
+    }
+    .contact-btn.primary {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: #fff;
+    }
+    .contact-btn.primary:hover {
+      background: var(--purple-dim);
+      border-color: var(--purple-dim);
+      color: #fff;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      padding: 2rem 5vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    footer .f-logo {
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+    }
+
+    .portfolio-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* =============================================
+       SCROLL REVEAL (lightweight)
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
