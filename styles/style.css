@@ -26,6 +26,7 @@
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
@@ -241,6 +242,10 @@
       font-weight: 700;
       margin-bottom: 0.4rem;
       color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .video-meta {
       font-size: 0.72rem;
@@ -465,11 +470,265 @@
 }
 
     /* =============================================
+       PRECIOS Y CONDICIONES
+    ============================================= */
+    .pricing-intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+    .pricing-intro strong { color: var(--text); }
+
+    .pricing-subtitle {
+      margin-top: 3rem;
+    }
+    .pricing-sub-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-top: -0.6rem;
+      margin-bottom: 1.6rem;
+      line-height: 1.6;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-top: 1rem;
+      transition: border-color 0.25s;
+    }
+    .price-card:hover { border-color: var(--purple); }
+    .price-card-premium {
+      border-color: var(--purple);
+      background: linear-gradient(180deg, var(--purple-glow) 0%, var(--surface) 40%);
+    }
+    .price-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .price-card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .badge-exclusive {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--purple);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+    }
+    .price-tag {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--purple);
+      white-space: nowrap;
+    }
+    .price-tag span {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-left: 0.2rem;
+    }
+    .price-card-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+    .price-card-desc strong { color: var(--text); }
+    .price-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.9rem;
+    }
+    .price-features li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+      margin-bottom: 0.45rem;
+      line-height: 1.5;
+    }
+    .price-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-weight: 700;
+    }
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Tabla de paquetes (versión desktop/tablet) */
+    .price-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 1.6rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      min-width: 560px;
+    }
+    .price-table th {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple);
+      text-align: left;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .price-table td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text);
+      vertical-align: top;
+    }
+    .price-table tr:last-child td { border-bottom: none; }
+    .table-price {
+      display: block;
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 0.95rem;
+    }
+    .table-sub {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .pricing-conditions { margin-top: 0; }
+
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem 3rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-cta {
+      margin-top: 3rem;
+      padding: 2rem;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .pricing-cta p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* =============================================
        RESPONSIVE
     ============================================= */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      /* ---- Carrusel horizontal de videos en mobile ---- */
+      .video-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 62%;
+        grid-template-columns: none;
+        overflow-x: auto;
+        gap: 0.9rem;
+        padding: 0.2rem 0.2rem 0.9rem;
+        margin: 0 -5vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--purple-dim) transparent;
+      }
+      .video-card {
+        scroll-snap-align: start;
+        min-width: 0;
+      }
+      .video-grid::-webkit-scrollbar { height: 5px; }
+      .video-grid::-webkit-scrollbar-track { background: transparent; }
+      .video-grid::-webkit-scrollbar-thumb {
+        background: var(--purple-dim);
+        border-radius: 3px;
+      }
+
+      /* ---- Tabla de paquetes: se apila como tarjetas, sin scroll lateral ---- */
+      .price-table-wrap {
+        overflow-x: visible;
+        border: none;
+        border-radius: 0;
+      }
+      .price-table {
+        min-width: 0;
+        display: block;
+      }
+      .price-table thead { display: none; }
+      .price-table tbody { display: block; }
+      .price-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .price-table tr:last-child { margin-bottom: 0; }
+      .price-table td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        text-align: right;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .price-table tr td:last-child { border-bottom: none; }
+      .price-table td::before {
+        content: attr(data-label);
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--purple);
+        text-align: left;
+        flex-shrink: 0;
+      }
+      .table-price, .table-sub { text-align: right; }
+    }
+
+    @media (max-width: 480px) {
+      .video-grid { grid-auto-columns: 78%; }
     }
 
     /* =============================================
