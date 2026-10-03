@@ -743,3 +743,27 @@
       opacity: 1;
       transform: none;
     }
+/* =============================================
+   SELECTOR DE IDIOMA (ES / EN)
+============================================= */
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lang-btn {
+  font-family: var(--font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.8rem;
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.lang-btn:hover { color: var(--text); }
+.lang-btn.active { background: var(--purple); color: #fff; }
