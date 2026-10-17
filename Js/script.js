@@ -49,3 +49,21 @@ if (reduceMotion) {
   }, { threshold: 0.25 });
   videos.forEach(v => videoObserver.observe(v));
 }
+
+/* ---------- Accesibilidad: cada video lleva su título como etiqueta ---------- */
+videos.forEach(v => {
+  const card = v.closest('.video-card');
+  const t = card && card.querySelector('.video-title');
+  v.setAttribute('aria-label', t ? t.textContent.trim() : 'Reel destacado');
+});
+
+/* ---------- Tarjetas de formación: brillo que sigue al cursor ---------- */
+if (!reduceMotion) {
+  document.querySelectorAll('.edu-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+}
